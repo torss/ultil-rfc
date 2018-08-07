@@ -2,7 +2,7 @@
   "name": "ultil-rfc",
   "version": "1.0.0",
   "description": "Non-textual general-purpose programming language",
-  "productName": "Ultil",
+  "productName": "Ultil RFC",
   "cordovaId": "org.cordova.quasar.app",
   "author": "Torsten Schlett - torss <37229901+torss@users.noreply.github.com>",
   "private": true,
