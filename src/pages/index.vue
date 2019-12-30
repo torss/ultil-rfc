@@ -76,7 +76,7 @@
         <p slot="textual">
           Code style guidelines and specialized tools are created per language to deal with formatting.
           This also includes relatively language-agnostic issues like indentation or naming-schemes (such as camel-case, snake-case, all-caps).
-          Version control can't easily distinguish pure formatting changes and actual program changes.
+          Version control can't always distinguish pure formatting changes and actual program changes.
         </p>
         <p slot="non-textual">
           There is no need for explicit formatting at all.
