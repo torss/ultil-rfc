@@ -55,6 +55,7 @@ module.exports = function (ctx) {
     build: {
       scopeHoisting: true,
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+      publicPath: 'ultil-rfc',
       showProgress: true,
       gzip: false,
       analyze: false,
