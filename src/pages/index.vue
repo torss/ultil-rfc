@@ -142,14 +142,22 @@
       <Bubble class="pos">
           <template slot="title">
             <img class="section-icon" src="~assets/section/implementation-approach.svg" /><br>
-            Possible approach
+            Prototype
           </template>
-          Due to my lack of experience, among other things, I consider starting with a somewhat reduced proof of concept such as this:
-          Instead of creating an entirely new language targeting e.g. LLVM,
-          the non-textual language would be a close superset of (and compile to) an existing general-purpose language.
-          Rust might be interesting for this purpose.
-          The specialized IDE would be created using Electron,
-          which should suffice efficiency-wise since the (display) complexity likely would be similar to Visual Studio Code or Atom.
+          I've started work on a private prototype, beginning with the creation of a custom Ultil IDE.
+          This IDE is built in form of a web application.
+          The first approach was based on Vue.js (the Quasar Framework to be precise),
+          but that was scrapped in favor of a leaner second approach,
+          which uses regular JavaScript to control Web APIs directly without any framework.
+          This of course allows for more fine-grained control,
+          and will also simplify a later rewrite of the Ultil IDE using the Ultil language itself,
+          which could be used to represent a JavaScript superset
+          (Ultil should be specified in a way that is flexible enough to easily represent any textual programming language,
+          although that isn't the primary goal).
+          At the currently still early stage of development
+          the focus lies on the creation of an effectively usable IDE UI specialized for this non-textual language.
+          It is likely that a truly useable Ultil system will take multiple years (starting 2020) to develop,
+          assuming the development continues as a solo project in my spare time.
       </Bubble>
       <Bubble class="q-caption text-weight-light" style="opacity: 0.8">
         <div class="text-weight-bold" style="text-align: center">
