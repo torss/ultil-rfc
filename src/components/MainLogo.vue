@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 flex flex-center">
+  <div class="main-logo-wrapper flex flex-center">
     <div class="container">
       <MainLogoImage src="statics/ultil-logo-large-bg.svg" />
       <div class="logo-hover-shift">
@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.main-logo-wrapper
+  flex-basis 100%
+
 .container
   width 15em
   height 15em

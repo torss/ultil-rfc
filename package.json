@@ -1,28 +1,27 @@
 {
   "name": "ultil-rfc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Non-textual general-purpose programming language",
   "productName": "Ultil RFC",
   "cordovaId": "org.cordova.quasar.app",
+  "capacitorId": "",
   "author": "Torsten Schlett - torss <37229901+torss@users.noreply.github.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "quasar": "^1.0.0"
+  },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.18.2",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^4.3.0",
-    "quasar-cli": "^0.16.0"
+    "@quasar/app": "^1.0.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.10.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^5.0.0"
   },
   "engines": {
     "node": ">= 8.9.0",
@@ -30,8 +29,6 @@
     "yarn": ">= 1.6.0"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 10"
+    "last 1 version, not dead, ie >= 11"
   ]
 }

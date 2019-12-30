@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'LayoutDefault'
+  name: 'MainLayout'
 }
 </script>
 
