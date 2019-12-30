@@ -7,10 +7,10 @@
       <MainLogo />
       <Bubble class="pos">
         <template slot="pre">
-          <q-card-title>
-            <span class="text-weight-bold q-display-1">Ultil</span><br>
+          <q-card-section class="card-title">
+            <span class="text-weight-bold page-title">Ultil</span><br>
             Ultimate* Language**
-          </q-card-title>
+          </q-card-section>
         </template>
         <span class="q-caption text-weight-light" style="opacity: 0.8">
           * Not actually ultimate, but the other 34 short abbreviations I tried were all taken, so there!<br>
@@ -155,11 +155,11 @@
         <div class="text-weight-bold" style="text-align: center">
           Credits
         </div>
-        <q-card-separator />
+        <q-separator />
         Author: <a href="https://github.com/torss">Torsten Schlett</a>
-        <q-card-separator />
+        <q-separator />
         This page was built using the <a href="https://quasar-framework.org/">Quasar Framework</a> (i.e. Vue.js).
-        <q-card-separator />
+        <q-separator />
         Repeatable SVG background pattern:
         "<a href="https://www.heropatterns.com/svg/circuit-board.zip">Circuit Board</a>"
         taken from the "<a href="https://www.heropatterns.com">Hero Patterns</a>" collection
@@ -220,4 +220,7 @@ a
 .section-icon
   width 15em
   height 15em
+
+.page-title
+  font-size 34px
 </style>

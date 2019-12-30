@@ -1,14 +1,14 @@
 <template>
-  <div class="exdiv col-12 flex flex-center">
+  <div class="bubble flex flex-center">
     <q-card>
       <slot name="pre"></slot>
-      <q-card-title v-if="!!this.$slots.title">
+      <q-card-section class="card-title" v-if="!!this.$slots.title">
         <slot name="title"></slot>
-      </q-card-title>
-      <q-card-separator v-if="!!this.$slots.title" />
-      <q-card-main>
+      </q-card-section>
+      <q-separator v-if="!!this.$slots.title" />
+      <q-card-section class="card-main">
         <slot></slot>
-      </q-card-main>
+      </q-card-section>
     </q-card>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.bubble
+  flex-basis 100%
+
 .q-card
   text-align center
   max-width 50em
@@ -32,7 +35,7 @@ export default {
   margin-bottom 1em
   text-shadow 0 0.1em 0 rgba(0,0,0,.5)
 
-.q-card-main
+.card-main
   text-align left
   font-size 1em
 
