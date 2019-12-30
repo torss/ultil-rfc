@@ -14,7 +14,7 @@
         </template>
         <span class="q-caption text-weight-light" style="opacity: 0.8">
           * Not actually ultimate, but the other 34 short abbreviations I tried were all taken, so there!<br>
-          ** Only in form of this very rough RFC right now.
+          ** Has yet to be implemented - see the "Prototype" section at the bottom.
         </span>
       </Bubble>
       <Bubble>
@@ -24,16 +24,16 @@
         <p>
           I argue for the development of a non-textual general-purpose programming language.
           The idea is not to necessarily create a new "exotic" visual language,
-          but rather to stay close to the common structure of established production languages (e.g. C),
-          just without source code in textual (human-editable) form.
+          but rather to mostly stay close to the common structure of established production languages (e.g. C),
+          just without source code in textual form.
+          While I believe that there is substantial untapped potential that could be exploited by decoupling a language from the typical textual form,
+          creating such a new language would naturally be a non-trivial endeavor.
         </p>
         <p>
           This page briefly presents a few of the resulting potential advantages and challenges.
-          It currently is only intended to vaguely communicate the general idea
-          in the hope of gathering feedback for a more concrete endeavor.
+          It currently is only intended to vaguely communicate the general idea,
+          not a comprehensive discussion.
         </p>
-        So if you have any kind of ideas, comments, criticism or questions please let me know by opening a GitHub issue
-        <a href="https://github.com/torss/ultil-rfc/issues">here</a>! :)
       </Bubble>
     </Segment>
     <Segment class="pos"  style="z-index: 2">
@@ -76,7 +76,7 @@
         <p slot="textual">
           Code style guidelines and specialized tools are created per language to deal with formatting.
           This also includes relatively language-agnostic issues like indentation or naming-schemes (such as camel-case, snake-case, all-caps).
-          Version control can't easily distinguish pure formatting changes and actual program changes.
+          Version control can't always distinguish pure formatting changes and actual program changes.
         </p>
         <p slot="non-textual">
           There is no need for explicit formatting at all.
@@ -127,6 +127,8 @@
 
             Instead, a specific version control system could be built into the non-textual language,
             possibly in synergy with the custom IDE to utilize up to perfect editing-step information.
+            So even though extra implementation work is necessary upfront as part of the language development,
+            the built-in version control could actually provide superior functionality for developers.
         </Bubble>
         <Bubble class="neg">
           <template slot="title">
@@ -142,14 +144,22 @@
       <Bubble class="pos">
           <template slot="title">
             <img class="section-icon" src="~assets/section/implementation-approach.svg" /><br>
-            Possible approach
+            Prototype
           </template>
-          Due to my lack of experience, among other things, I consider starting with a somewhat reduced proof of concept such as this:
-          Instead of creating an entirely new language targeting e.g. LLVM,
-          the non-textual language would be a close superset of (and compile to) an existing general-purpose language.
-          Rust might be interesting for this purpose.
-          The specialized IDE would be created using Electron,
-          which should suffice efficiency-wise since the (display) complexity likely would be similar to Visual Studio Code or Atom.
+          I've started work on a private prototype, beginning with the creation of a custom Ultil IDE.
+          This IDE is built in form of a web application.
+          The first approach was based on Vue.js (the Quasar Framework to be precise),
+          but that was scrapped in favor of a leaner second approach,
+          which uses regular JavaScript to control Web APIs directly without any framework.
+          This of course allows for more fine-grained control,
+          and will also simplify a later rewrite of the Ultil IDE using the Ultil language itself,
+          which could be used to represent a JavaScript superset
+          (Ultil should be specified in a way that is flexible enough to easily represent any textual programming language,
+          although that isn't the primary goal).
+          At the currently still early stage of development
+          the focus lies on the creation of an effectively usable IDE UI specialized for this non-textual language.
+          It is likely that a truly useable Ultil system will take multiple years (starting 2020) to develop,
+          assuming the development continues as a solo project in my spare time.
       </Bubble>
       <Bubble class="q-caption text-weight-light" style="opacity: 0.8">
         <div class="text-weight-bold" style="text-align: center">
