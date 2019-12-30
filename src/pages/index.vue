@@ -186,7 +186,7 @@ export default {
   },
   data: function () {
     return {
-      animated: this.$route.query.dca === undefined // dca: "disable costly animations"
+      animated: new URL(window.location.href).searchParams.get('dca') === null // dca: "disable costly animations"
     }
   },
   methods: {
