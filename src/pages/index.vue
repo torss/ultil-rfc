@@ -14,7 +14,7 @@
         </template>
         <span class="q-caption text-weight-light" style="opacity: 0.8">
           * Not actually ultimate, but the other 34 short abbreviations I tried were all taken, so there!<br>
-          ** Only in form of this very rough RFC right now.
+          ** Has yet to be implemented - see the "Prototype" section at the bottom.
         </span>
       </Bubble>
       <Bubble>
@@ -24,16 +24,16 @@
         <p>
           I argue for the development of a non-textual general-purpose programming language.
           The idea is not to necessarily create a new "exotic" visual language,
-          but rather to stay close to the common structure of established production languages (e.g. C),
-          just without source code in textual (human-editable) form.
+          but rather to mostly stay close to the common structure of established production languages (e.g. C),
+          just without source code in textual form.
+          While I believe that there is substantial untapped potential that could be exploited by decoupling a language from the typical textual form,
+          creating such a new language would naturally be a non-trivial endeavor.
         </p>
         <p>
           This page briefly presents a few of the resulting potential advantages and challenges.
-          It currently is only intended to vaguely communicate the general idea
-          in the hope of gathering feedback for a more concrete endeavor.
+          It currently is only intended to vaguely communicate the general idea,
+          not a comprehensive discussion.
         </p>
-        So if you have any kind of ideas, comments, criticism or questions please let me know by opening a GitHub issue
-        <a href="https://github.com/torss/ultil-rfc/issues">here</a>! :)
       </Bubble>
     </Segment>
     <Segment class="pos"  style="z-index: 2">
