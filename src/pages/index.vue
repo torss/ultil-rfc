@@ -127,6 +127,8 @@
 
             Instead, a specific version control system could be built into the non-textual language,
             possibly in synergy with the custom IDE to utilize up to perfect editing-step information.
+            So even though extra implementation work is necessary upfront as part of the language development,
+            the built-in version control could actually provide superior functionality for developers.
         </Bubble>
         <Bubble class="neg">
           <template slot="title">
