@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@tweenjs/tween.js": "^18.5.0",
     "quasar": "^1.0.0",
     "three": "^0.112.1",
     "three-gltf-loader": "^1.111.0"
