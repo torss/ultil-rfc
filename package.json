@@ -14,7 +14,8 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "quasar": "^1.0.0",
-    "three": "^0.112.1"
+    "three": "^0.112.1",
+    "three-gltf-loader": "^1.111.0"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",
