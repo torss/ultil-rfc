@@ -3,7 +3,8 @@
     <canvas class="three-canvas" ref="canvas" />
     <Segment>
       <q-btn-toggle class="mode-switch q-caption text-weight-light" no-caps
-        v-model="mode"
+        :value="mode"
+        @input="changeMode"
         :options="[
           {label: 'Basic page', value: 'basic'},
           {label: 'Animated page', value: 'animated'},
@@ -228,8 +229,8 @@ export default {
   beforeDestroy () {
     if (this.mode === '3d') deinitThree(this)
   },
-  watch: {
-    mode (newValue) {
+  methods: {
+    changeMode (newValue) {
       const url = new URL(window.location.href)
       url.searchParams.set('mode', newValue)
       window.location.replace(url.toString())
