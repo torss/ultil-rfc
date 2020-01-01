@@ -9,6 +9,8 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import { BloomFinalShader } from './shaders/BloomFinalShader'
 
+import { Lightning } from './Lightning'
+
 export function initThree (vueInstance) {
   const { canvas } = vueInstance.$refs
   const width = 1
@@ -37,6 +39,8 @@ export function initThree (vueInstance) {
   const gltfLoader = new GLTFLoader()
   let logoGroup
   let Uout
+  let lightningList = []
+  const lightningMaterial = new THREE.MeshBasicMaterial({ color: 0x6be2ff, side: THREE.DoubleSide })
   gltfLoader.load('../../statics/ultil-logo-3d.glb', (gltf) => {
     Uout = gltf.scene.getObjectByName('Uout')
     const Uin = gltf.scene.getObjectByName('Uin')
@@ -55,6 +59,21 @@ export function initThree (vueInstance) {
     logoGroup.add(Ugroup)
     scene.add(logoGroup)
 
+    const createLighting = (x0, x1) => {
+      const lightningPoint0 = new THREE.Object3D()
+      lightningPoint0.position.x = x0
+      Uin.add(lightningPoint0)
+      const lightningPoint1 = new THREE.Object3D()
+      lightningPoint1.position.x = x1
+      Lshape.add(lightningPoint1)
+      const lightning = new Lightning(scene, lightningPoint0, lightningPoint1)
+      lightning.material = lightningMaterial
+      lightning.create()
+      lightningList.push(lightning)
+    }
+    createLighting(-0.325, -0.1)
+    createLighting(+0.325, -0.1)
+
     new TWEEN.Tween({ value: 0 }).to({ value: 1 }, 3000).onUpdate((obj) => {
       Lshape.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), obj.value * 2 * Math.PI)
     }).repeat(Infinity).start()
@@ -71,6 +90,13 @@ export function initThree (vueInstance) {
       Uin.material.emissiveIntensity = 0.9 + 0.3 * obj.value
       Lshape.material.emissiveIntensity = 0.75 + 2 * obj.value
     }).easing(TWEEN.Easing.Quadratic.InOut).yoyo(true).repeat(Infinity).start()
+
+    new TWEEN.Tween({ value: -0.1 }).to({ value: 0.1 }, 1200).onUpdate((obj) => {
+      for (const lightning of lightningList) lightning.attachOffset0.y = obj.value
+    }).easing(TWEEN.Easing.Circular.InOut).yoyo(true).repeat(Infinity).start()
+    new TWEEN.Tween({ value: -0.05 }).to({ value: 0.1 }, 2100).onUpdate((obj) => {
+      for (const lightning of lightningList) lightning.attachOffset1.y = obj.value
+    }).easing(TWEEN.Easing.Circular.InOut).yoyo(true).repeat(Infinity).start()
   })
 
   const context = canvas.getContext('webgl')
@@ -139,6 +165,8 @@ export function initThree (vueInstance) {
 
     if (logoGroup) {
       logoGroup.position.y = 0.45 + 1.35 * (window.scrollY / window.innerHeight)
+
+      for (const lightning of lightningList) lightning.update(time)
 
       const emissiveIntensity = Uout.material.emissiveIntensity
       Uout.material.emissiveIntensity = 0
