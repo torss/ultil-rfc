@@ -73,6 +73,11 @@ module.exports = function (ctx) {
           options: {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
+        }, {
+          enforce: 'pre',
+          test: /\.(frag|vert|glsl)$/,
+          loader: 'raw-loader',
+          exclude: /(node_modules|quasar)/
         })
       }
     },
@@ -140,7 +145,6 @@ module.exports = function (ctx) {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
       id: 'org.cordova.quasar.app'
     },
-
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
