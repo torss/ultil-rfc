@@ -4,6 +4,7 @@ import TWEEN from '@tweenjs/tween.js'
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { SMAAPass } from 'three/examples/jsm/postprocessing/SMAAPass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import { BloomFinalShader } from './shaders/BloomFinalShader'
@@ -73,10 +74,11 @@ export function initThree (vueInstance) {
   })
 
   const context = canvas.getContext('webgl')
-  const renderer = new THREE.WebGLRenderer({ canvas, context, antialias: true })
+  const renderer = new THREE.WebGLRenderer({ canvas, context, antialias: false })
   renderer.setSize(width, height)
 
   const passScene = new RenderPass(scene, camera)
+  const passSmaa = new SMAAPass(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio())
   const passBloom = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.25, 1, 0)
   const composerBloom = new EffectComposer(renderer)
   composerBloom.renderToScreen = false
@@ -96,6 +98,7 @@ export function initThree (vueInstance) {
   const composerFinal = new EffectComposer(renderer)
   composerFinal.addPass(passScene)
   composerFinal.addPass(finalPass)
+  composerFinal.addPass(passSmaa)
 
   const $three = {
     isDestroyed: false,
