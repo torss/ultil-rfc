@@ -1,9 +1,15 @@
 <template>
-  <q-page :class="['flex', {animated}]">
+  <q-page :class="['flex', 'mode-' + mode]">
+    <canvas class="three-canvas" ref="canvas" />
     <Segment>
-      <q-btn class="dca-switch q-caption text-weight-light" no-caps @click.native="toggleMinimalAnimations">
-        Click here to {{animated ? 'disable' : 'enable'}} costly animations.
-      </q-btn>
+      <q-btn-toggle class="mode-switch q-caption text-weight-light" no-caps
+        v-model="mode"
+        :options="[
+          {label: 'Basic page', value: 'basic'},
+          {label: 'Animated page', value: 'animated'},
+          {label: '3D page', value: '3d'}
+        ]"
+      />
       <MainLogo />
       <Bubble class="pos">
         <template slot="pre">
@@ -16,6 +22,10 @@
           * Not actually ultimate, but the other 34 short abbreviations I tried were all taken, so there!<br>
           ** Has yet to be implemented - see the "Prototype" section at the bottom.
         </span>
+        <br><br>
+        <div class="text-center">
+          Page version {{ version }}
+        </div>
       </Bubble>
       <Bubble>
         <template slot="title">
@@ -185,6 +195,8 @@ import MainLogo from '../components/MainLogo.vue'
 import Segment from '../components/Segment.vue'
 import Bubble from '../components/Bubble.vue'
 import AdvBubble from '../components/AdvBubble.vue'
+import { initThree, deinitThree } from '../internal/InitThree'
+import { version } from '../../package.json'
 
 export default {
   name: 'PageIndex',
@@ -195,18 +207,31 @@ export default {
     AdvBubble
   },
   data: function () {
+    let mode = new URL(window.location.href).searchParams.get('mode')
+    switch (mode) {
+      case 'basic':
+      case 'animated':
+      case '3d':
+        break
+      default:
+        mode = 'basic'
+        break
+    }
     return {
-      animated: new URL(window.location.href).searchParams.get('dca') === null // dca: "disable costly animations"
+      mode,
+      version
     }
   },
-  methods: {
-    toggleMinimalAnimations () {
+  mounted () {
+    if (this.mode === '3d') initThree(this)
+  },
+  beforeDestroy () {
+    if (this.mode === '3d') deinitThree(this)
+  },
+  watch: {
+    mode (newValue) {
       const url = new URL(window.location.href)
-      if (this.animated) {
-        url.searchParams.set('dca', '')
-      } else {
-        url.searchParams.delete('dca')
-      }
+      url.searchParams.set('mode', newValue)
       window.location.replace(url.toString())
     }
   }
@@ -214,13 +239,22 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.three-canvas
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  z-index 1000
+  pointer-events none
+
 a
   color white
   font-weight bold
   text-shadow none
   text-shadow 0 0.05em 0 rgba(0,0,0,1)
 
-.dca-switch
+.mode-switch
   opacity 0.8
   background-color #33393F
   color #97999D

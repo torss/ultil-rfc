@@ -44,9 +44,13 @@ export default {
   100%
     transform translatex(0.25em) rotate(3deg)
 
-.animated
+.mode-animated
   .logo-hover-shift
     animation logo-hover-shift 6s ease-in-out infinite alternate
   .logo-hover
     animation logo-hover 2s ease-in-out infinite alternate
+
+.mode-3d
+  .main-logo-wrapper
+    visibility hidden
 </style>

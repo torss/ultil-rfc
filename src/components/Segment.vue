@@ -49,7 +49,7 @@ $bg-opacity-anim-params = 2s ease-in infinite alternate
   *
     z-index 4
 
-.animated
+.mode-animated
   .segment
     .background
       animation bg-hue-anim $bg-hue-anim-params
