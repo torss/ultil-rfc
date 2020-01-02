@@ -2,6 +2,7 @@
   <q-page :class="['flex', 'mode-' + mode]">
     <canvas class="three-canvas" ref="canvas" />
     <Segment>
+      <MainLogo />
       <q-btn-toggle class="mode-switch q-caption text-weight-light" no-caps
         :value="mode"
         @input="changeMode"
@@ -11,7 +12,6 @@
           {label: '3D page', value: '3d'}
         ]"
       />
-      <MainLogo />
       <Bubble class="pos">
         <template slot="pre">
           <q-card-section class="card-title">
@@ -47,7 +47,7 @@
         </p>
       </Bubble>
     </Segment>
-    <Segment class="pos"  style="z-index: 2">
+    <Segment class="pos" style="z-index: 2">
       <AdvBubble>
         <template slot="title">
           <img class="section-icon" src="~assets/section/advantage/decoupled-syntax.svg" /><br>
@@ -246,7 +246,7 @@ export default {
   bottom 0
   left 0
   right 0
-  z-index 1000
+  z-index 2
   pointer-events none
 
 a

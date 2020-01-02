@@ -9,6 +9,8 @@ import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import { BloomFinalShader } from './shaders/BloomFinalShader'
 
+import { BgShader } from './shaders/BgShader'
+
 import { Lightning } from './Lightning'
 
 export function initThree (vueInstance) {
@@ -24,6 +26,34 @@ export function initThree (vueInstance) {
   const directionalLight = new THREE.DirectionalLight(0xffffff, 5)
   directionalLight.position.set(1, 1, 1)
   scene.add(directionalLight)
+
+  // // Background // //
+
+  let materialBg
+  let meshBg
+  {
+    const texture = new THREE.TextureLoader().load('../../statics/circuit-board.png')
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping
+
+    materialBg = new THREE.ShaderMaterial({
+      ...BgShader,
+      depthWrite: false,
+      depthTest: true,
+      transparent: true,
+      uniforms: {
+        tex: { value: texture },
+        ar: { value: 1.0 },
+        time: { value: 0 },
+        scrollY: { value: 0 }
+      }
+    })
+
+    const geometry = new THREE.PlaneBufferGeometry(2, 2, 1, 1)
+    meshBg = new THREE.Mesh(geometry, materialBg)
+    scene.add(meshBg)
+  }
+
+  // // Logo // //
 
   function createLogoMaterial (color, emissiveIntensity = 0.75) {
     return new THREE.MeshStandardMaterial({
@@ -164,8 +194,11 @@ export function initThree (vueInstance) {
     TWEEN.update(time)
 
     if (logoGroup) {
-      logoGroup.position.y = 0.45 + 1.35 * (window.scrollY / window.innerHeight)
+      materialBg.uniforms.ar.value = camera.aspect
+      materialBg.uniforms.time.value = time / 1000
+      materialBg.uniforms.scrollY.value = window.scrollY / window.innerHeight
 
+      logoGroup.position.y = 1.35 * ((window.scrollY + window.innerHeight * 0.35) / window.innerHeight)
       for (const lightning of lightningList) lightning.update(time)
 
       const emissiveIntensity = Uout.material.emissiveIntensity

@@ -52,5 +52,7 @@ export default {
 
 .mode-3d
   .main-logo-wrapper
+    height 30vh
+  .main-logo-wrapper
     visibility hidden
 </style>
