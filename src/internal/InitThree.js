@@ -199,6 +199,7 @@ export function initThree (vueInstance) {
       materialBg.uniforms.scrollY.value = window.scrollY / window.innerHeight
 
       logoGroup.position.y = 1.35 * ((window.scrollY + window.innerHeight * 0.35) / window.innerHeight)
+      logoGroup.updateMatrixWorld()
       for (const lightning of lightningList) lightning.update(time)
 
       const emissiveIntensity = Uout.material.emissiveIntensity
