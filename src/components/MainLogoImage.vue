@@ -34,7 +34,7 @@ export default {
   &.bottom
     position absolute
 
-.animated img
+.mode-animated img
   $logo-animation-params = 0.75s ease-in-out infinite alternate
   &.top
     animation logo-sat-pulse $logo-animation-params

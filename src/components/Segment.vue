@@ -49,7 +49,7 @@ $bg-opacity-anim-params = 2s ease-in infinite alternate
   *
     z-index 4
 
-.animated
+.mode-animated
   .segment
     .background
       animation bg-hue-anim $bg-hue-anim-params
@@ -57,4 +57,12 @@ $bg-opacity-anim-params = 2s ease-in infinite alternate
       .background
         filter invert(0.75) sepia(1) saturate(10) hue-rotate(175deg)
         animation bg-opacity-anim $bg-opacity-anim-params
+
+.mode-3d
+  .segment
+    .background
+      display none
+    &.pos
+      background-color rgba(#126CC4, 0.5)
+      box-shadow 0 0 5em #000
 </style>
