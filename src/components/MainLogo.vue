@@ -23,6 +23,8 @@ export default {
 <style lang="stylus" scoped>
 .main-logo-wrapper
   flex-basis 100%
+  margin-top 1em
+  margin-bottom 1.5em
 
 .container
   width 15em
@@ -53,6 +55,8 @@ export default {
 .mode-3d
   .main-logo-wrapper
     height 30vh
+    margin-top 0em
+    margin-bottom 0em
   .main-logo-wrapper
     visibility hidden
 </style>
