@@ -32,7 +32,7 @@ export function initThree (vueInstance) {
   let materialBg
   let meshBg
   {
-    const texture = new THREE.TextureLoader().load('../../statics/circuit-board.png')
+    const texture = new THREE.TextureLoader().load('statics/circuit-board.png')
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping
 
     materialBg = new THREE.ShaderMaterial({
@@ -71,7 +71,7 @@ export function initThree (vueInstance) {
   let Uout
   let lightningList = []
   const lightningMaterial = new THREE.MeshBasicMaterial({ color: 0x6be2ff, side: THREE.DoubleSide })
-  gltfLoader.load('../../statics/ultil-logo-3d.glb', (gltf) => {
+  gltfLoader.load('statics/ultil-logo-3d.glb', (gltf) => {
     Uout = gltf.scene.getObjectByName('Uout')
     const Uin = gltf.scene.getObjectByName('Uin')
     const Lshape = gltf.scene.getObjectByName('L')
